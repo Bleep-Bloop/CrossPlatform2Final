@@ -12,18 +12,22 @@ public class PlayerDeadState : PlayerBaseState
 
     public override void Enter()
     {
+       
+
         // Disabled to stop animations from being played.
         stateMachine.enabled = false;
 
         stateMachine.canMove = false;
-        stateMachine.velocity = Vector3.zero;  
+        stateMachine.velocity = Vector3.zero;
+        GameManager.Instance.PassSound(stateMachine.deathSFX, false);
         
+
         stateMachine.animator.CrossFadeInFixedTime(deathHash, crossFadeDuration);
     }
 
     public override void Tick()
     {
-
+        
         
 
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class PlayerJumpState : PlayerBaseState
 {
 
@@ -32,4 +33,6 @@ public class PlayerJumpState : PlayerBaseState
     // It is mandatory to provide overwrites of all abstract methods of an abstract parent class unless the child class is also abstract. That is why we have provided an implementation for the Exit() even though it does nothing here.
     public override void Exit() { }
 
+
+   
 }

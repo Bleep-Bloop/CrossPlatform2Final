@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af735b72db0c75a46a9e2a60ddb97586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpPrefab: {fileID: 722922469305268603, guid: d53d7070225fd3248b59dae949f234ba, type: 3}
   player: {fileID: 0}
   ghostMaterial: {fileID: 2100000, guid: 259d444411f75bb4c9abc335f4e7ed87, type: 2}
   transparentGhostMaterial: {fileID: 2100000, guid: 9cd116aec1b057d4cb88f59c9fb17b9e, type: 2}

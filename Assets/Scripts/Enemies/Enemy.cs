@@ -7,6 +7,10 @@ public class Enemy : MonoBehaviour
     protected NavMeshAgent navMeshAgent;
     protected SkinnedMeshRenderer skinnedMeshRenderer;
     protected Animator anim;
+    protected BoxCollider bc;
+    [SerializeField] protected int dropRate = 100; // Percentage chance of a power up being dropped upon death.
+    [SerializeField] protected PowerUp powerUpPrefab;
+    public AudioClip deathNoise;
 
     protected int _health;
 
@@ -18,31 +22,26 @@ public class Enemy : MonoBehaviour
             _health = value;
 
             if (_health <= 0)
-                Death();
+            {
+                //Death();
+            }
         }
     }
+
+    protected bool isDead = false;
 
     protected void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         anim = GetComponent<Animator>();
-    }
-    // Start is called before the first frame update
-    protected void Start()
-    {
-        
-    }
+        bc = GetComponent<BoxCollider>();
 
-    // Update is called once per frame
-    protected void Update()
-    {
-        
-    }
-
-    public virtual void Death()
-    {
-        anim.SetTrigger("Death");
+        // Ensuring the dropRate percentage is between 0-100% 
+        if (dropRate > 100)
+            dropRate = 100;
+        else if (dropRate < 0)
+            dropRate = 0;
     }
 
     // Called from animation event in death animations
@@ -58,7 +57,12 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+
+        if (collision.gameObject.tag == "Projectile")
+        {
+            Death(DeathType.Projectile);
+        }
+        else if (collision.gameObject.tag == "Player")
         {
 
             PlayerStateMachine curPlayerStateMachine = collision.gameObject.GetComponent<PlayerStateMachine>();
@@ -70,38 +74,87 @@ public class Enemy : MonoBehaviour
                     curPlayerHealth.health = 0;
                 }
             }
-          
-
-            
-
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
        
-
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "MeleeHitbox")
         {
-
             PlayerStateMachine curPlayer = other.GetComponentInParent<PlayerStateMachine>();
             
             if(curPlayer)
             {
                 if(curPlayer.isKicking)
                 {
-                    anim.SetTrigger("KickDeath");
-                    Debug.Log("Kick Death");
+                    Death(DeathType.Kick);
                 }
                 else if(curPlayer.isChopping)
                 {
-                    anim.SetTrigger("ChopDeath");
-                    Debug.Log("Chop Death");
+                    Death(DeathType.Kick);
                 }
+            }    
+        }
+    }
+
+    public virtual void Death(DeathType deathType)
+    {
+
+        switch (deathType)
+        {
+            case DeathType.Chop:
+                anim.SetTrigger("ChopDeath");
+                break;
+            case DeathType.Kick:
+                anim.SetTrigger("KickDeath");
+                break;
+            case DeathType.Projectile:
+                anim.SetTrigger("ProjectileDeath");
+                break;
+            case DeathType.Death:
+                break;
+            default:
+                anim.SetTrigger("Death"); // ToDo: Double check this is active.
+                break;
+        }
+
+        Invoke("DropPowerUp", 3.5f);
+        bc.enabled = false;
+        isDead = true;
+        
+    }
+
+    // Spawns a pickup. Called from animation event.
+    void DropPowerUp()
+    {
+
+        if(powerUpPrefab)
+        {
+            if (Random.Range(0, 100) <= dropRate)
+            {
+                Instantiate(powerUpPrefab, this.transform.position, this.transform.rotation); 
             }
-            
+            else
+            {
+                Debug.Log("Bad Luck - No Drop");
+            }
         }
     }
 
 
+    public void PlayDeadSound()
+    {
+        GameManager.Instance.soundManager.Play(deathNoise, false);
+    }
+
+}
+
+
+public enum DeathType
+{
+    Chop,
+    Kick,
+    Projectile,
+    Death, 
 }

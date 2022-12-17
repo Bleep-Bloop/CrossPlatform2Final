@@ -87,7 +87,6 @@ public class InputReader : MonoBehaviour, PlayerControls.IPlayerActions // Input
             return;
 
         OnAimPerformed?.Invoke();
-
     }
     
 

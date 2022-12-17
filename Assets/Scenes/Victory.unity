@@ -397,6 +397,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46891136}
   m_CullTransparentMesh: 1
+--- !u!1001 &64491620
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 282019198361964146, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5205ba94d86c190499dd4663bc0570b4, type: 3}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 124.42873
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.846828
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.13836
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603648, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384041721451603650, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc0a53d7b8f46474b9ef844f4217695d, type: 3}
 --- !u!1 &388318086
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,10 +682,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8334d8e8fa7cf446809764382c833a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  deathMenu: {fileID: 0}
+  playerRef: {fileID: 0}
+  checkpointRefs: []
   startButton: {fileID: 0}
   quitButton: {fileID: 922704530}
   mainMenuButton: {fileID: 1366855800}
   playerHealthSprite: {fileID: 0}
+  resumeButton: {fileID: 0}
+  saveButton: {fileID: 0}
+  loadButton: {fileID: 0}
+  continueButton: {fileID: 0}
+  GameOverBackground: {fileID: 0}
 --- !u!114 &853597190
 MonoBehaviour:
   m_ObjectHideFlags: 0

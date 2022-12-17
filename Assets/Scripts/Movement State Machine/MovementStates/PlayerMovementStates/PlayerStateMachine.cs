@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(InputReader))]
 [RequireComponent(typeof(Animator))]
@@ -21,6 +22,19 @@ public class PlayerStateMachine : StateMachine
 
     public bool isChopping = false;
     public bool isKicking = false;
+
+    public AudioClip deathSFX;
+    public AudioClip chopSFX;
+    public AudioClip kickSFX;
+
+    public AudioClip taunt1;
+    
+
+    Coroutine jumpForceChange;
+    Coroutine moveSpeedChange;
+
+
+
 
     // put a isChop isKicking check to get death animations
     public BoxCollider meleeHitBox;
@@ -65,6 +79,11 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerMoveState(this)); 
     }
 
+    public void TogglePlayerMoveState()
+    {
+        SwitchState(new PlayerMoveState(this)); 
+    }
+
     public void ToggleMeleeHitBox()
     {
         meleeHitBox.enabled = !meleeHitBox.enabled;
@@ -88,6 +107,12 @@ public class PlayerStateMachine : StateMachine
         isKicking = false;
     }
 
+    public void setCanMove(bool state)
+    {
+        //this.enabled = true;
+        canMove = state;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -100,6 +125,56 @@ public class PlayerStateMachine : StateMachine
     private void OnCollisionEnter(Collision collision)
     {
         
+    }
+
+    public void StartJumpForceChange()
+    {
+        if (jumpForceChange == null)
+        {
+            jumpForceChange = StartCoroutine(JumpForceChange());
+        }
+        else
+        {
+            StopCoroutine(jumpForceChange);
+            jumpForceChange = null;
+            jumpForce /= 2;
+            jumpForceChange = StartCoroutine(JumpForceChange());
+        }
+    }
+
+    IEnumerator JumpForceChange()
+    {
+        jumpForce *= 2;
+
+        yield return new WaitForSeconds(5.0f);
+
+        jumpForce /= 2;
+        jumpForceChange = null;
+    }
+
+    public void StartMoveSpeedChange()
+    {
+        if(moveSpeedChange == null)
+        {
+            moveSpeedChange = StartCoroutine(MoveSpeedChange());
+        }
+        else
+        {
+            StopCoroutine(MoveSpeedChange());
+            moveSpeedChange = null;
+            movementSpeed /= 2;
+            moveSpeedChange = StartCoroutine(MoveSpeedChange());
+        }
+    }
+
+    IEnumerator MoveSpeedChange()
+    {
+        movementSpeed *= 2;
+
+        yield return new WaitForSeconds(5.0f);
+
+        movementSpeed /= 2;
+        moveSpeedChange = null;
     }
 
 

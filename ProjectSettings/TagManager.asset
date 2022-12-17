@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - Kick
   - Chop
+  - Checkpoint
+  - Projectile
+  - Catapult
+  - MeleeHitbox
   layers:
   - Default
   - TransparentFX

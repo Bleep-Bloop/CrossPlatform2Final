@@ -9,6 +9,7 @@ public class PlayerKickState : PlayerBaseState
 
     public override void Enter()
     {
+        GameManager.Instance.PassSound(stateMachine.kickSFX, false);
         stateMachine.velocity = Vector3.zero;
 
         stateMachine.animator.CrossFadeInFixedTime(kickHash, crossFadeDuration);

@@ -21,7 +21,15 @@ public class Zombie : Enemy
     // Update is called once per frame
     new void Update()
     {
-        navMeshAgent.SetDestination(player.transform.position);
+        if(isDead == true)
+        {
+            navMeshAgent.isStopped = true;
+        }
+        else
+        {
+            navMeshAgent.SetDestination(player.transform.position);
+        }
+        
     }
 
 

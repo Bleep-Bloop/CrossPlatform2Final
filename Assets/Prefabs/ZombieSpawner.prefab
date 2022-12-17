@@ -79,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnInterval: 10
   enemyPrefab: {fileID: 6038735357659361458, guid: c4df22cb0e85ce14789075a31821ac19, type: 3}
+  enemyPrefab2: {fileID: 3280408204499776513, guid: a074a108d4ae11545b14b18b68c1ff5f, type: 3}
   spawnPoint: {fileID: 5991756094997752186}
 --- !u!1 &8979847139685831300
 GameObject:

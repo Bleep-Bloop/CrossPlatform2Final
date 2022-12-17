@@ -8,6 +8,7 @@ public class PlayerMoveState : PlayerBaseState
     private const float animationDampTime = 0.1f;
     private const float crossFadeDuration = 0.1f;
 
+
     public PlayerMoveState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -36,6 +37,11 @@ public class PlayerMoveState : PlayerBaseState
 
     public override void Tick()
     {
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            GameManager.Instance.PassSound(stateMachine.taunt1, false);
+        }
 
         // If not grounded switch to fall state.
         if(!stateMachine.controller.isGrounded)
@@ -91,7 +97,7 @@ public class PlayerMoveState : PlayerBaseState
 
     private void OnPlayerHealthChanged()
     {
-        if(stateMachine.playerHealthComponent.health == 0)
+        if(stateMachine.playerHealthComponent.health == 0 && !stateMachine.playerHealthComponent.isDead)
         {
             SwitchToDeathState();
         }

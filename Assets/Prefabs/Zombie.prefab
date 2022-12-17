@@ -1217,6 +1217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7908bc1fcc0eed54ab9742c3885432ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropRate: 50
+  powerUpPrefab: {fileID: 722922469305268603, guid: d53d7070225fd3248b59dae949f234ba, type: 3}
+  deathNoise: {fileID: 8300000, guid: 0e64da33eab3b7f419a261213b3c1c10, type: 3}
   player: {fileID: 0}
 --- !u!195 &6849003072920928755
 NavMeshAgent:

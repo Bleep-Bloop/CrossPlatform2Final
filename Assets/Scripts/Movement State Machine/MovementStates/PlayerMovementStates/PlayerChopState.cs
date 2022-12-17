@@ -11,6 +11,7 @@ public class PlayerChopState : PlayerBaseState
 
     public override void Enter()
     {
+        GameManager.Instance.PassSound(stateMachine.chopSFX, false);
         stateMachine.velocity = Vector3.zero;
 
         stateMachine.animator.CrossFadeInFixedTime(chopHash, crossFadeDuration);
